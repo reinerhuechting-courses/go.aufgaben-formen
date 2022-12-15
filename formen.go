@@ -63,3 +63,75 @@ func PrintTriangle(n int) {
 		fmt.Println()
 	}
 }
+
+// Main-Funktion mit Benutzereingabe.
+// Wir verwenden Hilfsfunktionen (weiter unten definiert), damit es übersichtlich bleibt.
+func main() {
+	shape := GetShape()
+
+	width := GetDimension("Breite")
+	if shape == 3 {
+		PrintTriangle(width)
+		return
+	}
+
+	fill := GetSymbol("die Füllung")
+	border := GetSymbol("den Rand")
+	if shape == 2 {
+		height := GetDimension("Höhe")
+		PrintCustomRectangle(width, height, border, fill)
+		return
+	}
+	PrintCustomSquare(width, border, fill)
+}
+
+// Fragt den Benutzer nach der Form und liefert eine entsprechende Zahl:
+// 1: Quadrat
+// 2: Rechteck
+// 3: Dreieck
+func GetShape() int {
+	fmt.Println("Was soll gezeichnet werden?")
+	fmt.Println("1: Quadrat")
+	fmt.Println("2: Rechteck")
+	fmt.Println("3: Dreieck")
+	fmt.Print("Bitte geben Sie die entsprechende Zahl ein: ")
+
+	var input int
+	fmt.Scanln(&input)
+
+	if input >= 1 && input <= 3 {
+		return input
+	}
+	fmt.Println("Eingabe ungültig, bitte wiederholen.")
+	fmt.Println("")
+	return GetShape()
+}
+
+// Fragt den Benutzer nach eine Länge und liefert diese.
+// Der Name der gewünschten Länge wird als Parameter erwartet.
+func GetDimension(name string) int {
+	fmt.Printf("Welche %s soll die Form haben?\n", name)
+	fmt.Print("Bitte eine Zahl > 0 eingeben: ")
+
+	var input int
+	fmt.Scanln(&input)
+
+	if input > 0 {
+		return input
+	}
+	fmt.Println("Eingabe ungültig, bitte wiederholen.")
+	fmt.Println("")
+	return GetDimension(name)
+}
+
+// Fragt den Benutzer nach einem Zeichen.
+// Die Bezeichnung wird als Parameter erwartet.
+func GetSymbol(name string) string {
+	fmt.Printf("Welches Zeichen soll für %s verwendet werden?\n", name)
+	fmt.Print("Bitte einen String eingeben: ")
+
+	var input string
+	fmt.Scanln(&input)
+
+	return input
+}
