@@ -88,26 +88,6 @@ func ExamplePrintRectangle() {
 	// **
 }
 
-func ExamplePrintCustomRectangle() {
-	PrintCustomRectangle(3, 4, "*", "#")
-	fmt.Println()
-	PrintCustomRectangle(5, 2, "*", "#")
-	fmt.Println()
-	PrintCustomRectangle(2, 2, "*", "#")
-
-	// Output:
-	// ***
-	// *#*
-	// *#*
-	// ***
-	//
-	// *****
-	// *****
-	//
-	// **
-	// **
-}
-
 func ExamplePrintTriangle() {
 	PrintTriangle(3)
 	fmt.Println()
